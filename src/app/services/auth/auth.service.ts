@@ -19,8 +19,6 @@ export class AuthService {
 
   @Output() isLoggedIn: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  @Output() userInfo: EventEmitter<LoginDto> = new EventEmitter<LoginDto>();
-
   /**
    * Standard constructor
    * @param {HttpClient} httpClient used to access backend API
@@ -47,7 +45,6 @@ export class AuthService {
       const successfulAuthentication =
         parsedUserData.loginStatus === 'SUCCESS';
       this.isLoggedIn.next(successfulAuthentication);
-      this.userInfo.next(parsedUserData);
       return successfulAuthentication;
     }
     return false;
@@ -59,30 +56,6 @@ export class AuthService {
    */
   public getIsLoggedIn(): Observable<boolean> {
     return this.isLoggedIn;
-  }
-
-  /**
-   * Returns parsed user info as LoginDto, null if undefined.
-   * @return {LoginDto | null} user info as LoginDto or null if undefined
-   */
-  public getUserInfo(): LoginDto | null {
-    const userInfo = localStorage.getItem(AuthService.USER_DATA_KEY);
-    return (userInfo) ? JSON.parse(userInfo) : null;
-  }
-
-  /**
-   * Used to set user info in local storage.
-   * @param {LoginDto} userInfo data to be stored
-   */
-  public setUserInfo(userInfo: LoginDto) {
-    localStorage.setItem(AuthService.USER_DATA_KEY, JSON.stringify(userInfo));
-  }
-
-  /**
-   * Deletes user authentication info.
-   */
-  public deleteUserInfo() {
-    localStorage.removeItem(AuthService.USER_DATA_KEY);
   }
 
   /**
@@ -100,7 +73,6 @@ export class AuthService {
         .post<LoginDto>(`/api/auth/login`, body)
         .subscribe((response) => {
           if (response.loginStatus == 'SUCCESS') {
-            this.setUserInfo(response);
             this.isLoggedIn.next(true);
             this.router.navigate(['/home']).then((_) => {
             });
@@ -113,7 +85,6 @@ export class AuthService {
    * @param {boolean} showMessage flag indicating whether success message should be shown
    */
   logout(showMessage: boolean) {
-    this.deleteUserInfo();
     this.organizationService.deleteOrganizationInfo();
     this.isLoggedIn.next(false);
     this.organizationService.setCurrentOrganization(DEFAULT_ORGANIZATION);

@@ -40,10 +40,6 @@ export class HeaderComponent implements OnInit {
         .subscribe((organizations) => {
           this.availableOrganizations = organizations;
         });
-    const userInfo = this.authService.getUserInfo();
-    if (userInfo) {
-      this.loggedInUsername = userInfo.username;
-    }
   }
 
   /**
@@ -54,9 +50,7 @@ export class HeaderComponent implements OnInit {
       this.isMobile = true;
     }
     this.isLoggedIn = this.authService.isAuthenticated();
-    const userInfo = this.authService.getUserInfo();
-    if (userInfo) {
-      this.loggedInUsername = userInfo.username;
+    if (this.isLoggedIn) {
       this.notificationService.getNotifications()
           .subscribe((notifications) => {
             this.notifications = notifications;
@@ -78,9 +72,5 @@ export class HeaderComponent implements OnInit {
    */
   doLogout() {
     this.authService.logout(true);
-  }
-
-  updateCurrentOrganization(organization: OrganizationDto) {
-    this.organizationService.setCurrentOrganization(organization);
   }
 }

@@ -47,10 +47,7 @@ export class ViewOrganizationsWhereInvolvedComponent implements OnInit {
    * @return {boolean} indicating whether currently logged-in user is administrator
    */
   isAdmin(organization: OrganizationDto): boolean {
-    const loginInfo = this.authService.getUserInfo();
-    if (loginInfo) {
-      return organization.administratorEmails.includes(loginInfo.username);
-    }
+    // TODO determine if user is admin
     return false;
   }
 
