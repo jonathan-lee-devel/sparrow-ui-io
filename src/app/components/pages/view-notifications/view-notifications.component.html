@@ -1,0 +1,35 @@
+<section class="py-5 border-bottom">
+  <div class="container px-5 my-5 px-5">
+    <div class="text-center mb-5">
+      <h2 class="fw-bolder">All Notifications</h2>
+    </div>
+    <div class="row gx-5 justify-content-center">
+      <div class="col-lg-6">
+        <div *ngIf="notifications.length === 0">
+          <div class="text-center">
+            No notifications
+          </div>
+        </div>
+        <div *ngFor="let notification of notifications" class="card mb-4">
+          <div class="card-body p-4">
+            <div class="d-flex">
+              <div class="flex-shrink-0">
+                <i *ngIf="notification.type === 'INFO'" class="bi bi-info-circle text-primary"></i>
+                <i *ngIf="notification.type === 'WARNING'" class="bi bi-exclamation-circle text-warning"></i>
+                <i *ngIf="notification.type === 'SUCCESS'" class="bi bi-check-circle text-success"></i>
+                <i *ngIf="notification.type === 'ERROR'" class="bi bi-x-circle text-danger"></i>
+              </div>
+              <div class="ms-4">
+                <p class="mb-1">{{notification.title}}</p>
+                <div class="small text-muted">{{notification.content}}</div>
+                <button (click)="acknowledgeNotification(notification)" *ngIf="!notification.acknowledged"
+                        class="btn btn-info">Acknowledge
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

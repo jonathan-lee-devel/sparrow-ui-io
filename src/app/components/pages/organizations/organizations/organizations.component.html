@@ -1,0 +1,44 @@
+<!-- ======= Hero Section ======= -->
+<section class="d-flex align-items-center" id="hero">
+  <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
+    <div class="row justify-content-center">
+      <div class="col-xl-7 col-lg-9 text-center">
+        <h1>Clipboard Organizations Page</h1>
+        <h2>{{currentOrganization.name}}</h2>
+      </div>
+    </div>
+    <div class="row icon-boxes">
+      <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="200">
+        <div class="icon-box">
+          <div class="icon"><i class="bi-activity"></i></div>
+          <h4 class="title"><a routerLink="/organizations/create">Create</a></h4>
+          <p class="description">Click here to manage deliveries, this includes functionality for drivers to view
+            which deliveries have been assigned to them</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="300">
+        <div class="icon-box">
+          <div class="icon"><i class="bi-input-cursor"></i></div>
+          <h4 class="title"><a routerLink="/organizations/involvements">Involvements</a></h4>
+          <p class="description">Click here to manage orders, this includes functionality for admins</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="400">
+        <div class="icon-box">
+          <div class="icon"><i class="bi-archive"></i></div>
+          <h4 class="title"><a routerLink="/organizations/request-to-join">Join</a></h4>
+          <p class="description">Click here to manage suppliers, this includes functionality for both suppliers and
+            admins</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in"
+           data-aos-delay="500">
+        <div class="icon-box">
+          <div class="icon"><i class="bi-backspace"></i></div>
+          <h4 class="title"><a routerLink="/home">Back to Home</a></h4>
+          <p class="description">Click here, if you are an admin, to access the admin panel</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!-- End Hero -->

@@ -1,0 +1,62 @@
+<main>
+  <div class="container">
+
+    <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+            <div class="d-flex justify-content-center py-4">
+              <a class="logo d-flex align-items-center w-auto" routerLink="/home">
+                <img alt="" src="assets/img/logo.png">
+                <span class="d-none d-lg-block">Clipboard</span>
+              </a>
+            </div>
+            <div class="card mb-3">
+              <div class="card-body">
+                <div class="pt-4 pb-2">
+                  <h5 class="card-title text-center pb-0 fs-4">Create a Delivery</h5>
+                  <p class="text-center small">Enter your delivery details and hit create</p>
+                </div>
+                <form (ngSubmit)="doCreateDelivery()" class="row g-3 needs-validation" novalidate>
+                  <div class="col-12">
+                    <label class="form-label" for="title">Title</label>
+                    <div class="input-group has-validation">
+                      <input [(ngModel)]="title" class="form-control" id="title" name="title" required
+                             type="text">
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label" for="details">Details</label>
+                    <div class="input-group has-validation">
+                      <input [(ngModel)]="details" class="form-control" id="details" name="details" required
+                             type="text">
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label" for="assignedDriverEmail">Assigned Driver</label>
+                    <div class="input-group has-validation">
+                      <select [(ngModel)]="assignedDriverEmail" id="assignedDriverEmail" name="assignedDriverEmail">
+                        <option *ngFor="let driverEmail of organization.memberEmails"
+                                value="{{driverEmail}}">{{driverEmail}}</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-check">
+                      <input [(ngModel)]="isDelivered" class="form-check-input" id="isDelivered" name="isDelivered"
+                             type="checkbox" value="true">
+                      <label class="form-check-label" for="isDelivered">Is Delivered</label>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <button class="btn btn-primary w-100" type="submit">Create</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>

@@ -1,0 +1,11 @@
+li {
+  list-style-type: none;
+}
+
+#registerButton {
+  margin-right: 5px;
+}
+
+#organizationNavLink {
+  margin-left: 10px;
+}

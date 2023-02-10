@@ -1,0 +1,20 @@
+<!-- Page content-->
+<div class="container">
+  <div class="row">
+    <!-- Side widgets-->
+    <div class="col-lg-4">
+      <!-- Side widget-->
+      <div class="card mb-4">
+        <div class="card-header"><b>{{organization.name}}</b></div>
+        <div class="card-body">
+          <h3>Organization Administrators:</h3>
+          <p *ngIf="organization.administratorEmails.length === 0">(No administrators)</p>
+          <p *ngFor="let administratorEmail of organization.administratorEmails">{{administratorEmail}}</p>
+          <h3>Organization Members:</h3>
+          <p *ngIf="organization.memberEmails.length === 0">(No members)</p>
+          <p *ngFor="let memberEmail of organization.memberEmails">{{memberEmail}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
