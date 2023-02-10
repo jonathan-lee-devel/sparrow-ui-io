@@ -12,7 +12,7 @@ RUN npm run build:prod
 
 FROM --platform=linux/x86_64 nginx:1.23.3-alpine
 
-COPY --from=build app/dist/clipboard-ui /usr/share/nginx/html
+COPY --from=build app/dist/sparrow-ui /usr/share/nginx/html
 
 COPY nginx/default.conf /etc/nginx/conf.d/
 

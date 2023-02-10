@@ -16,10 +16,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'clipboard-ui'`, () => {
+  it(`should have as title 'sparrow-ui'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('clipboard-ui');
+    expect(app.title).toEqual('sparrow-ui');
   });
 
   it('should render title', () => {
@@ -27,6 +27,6 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('.content span')?.textContent)
-        .toContain('clipboard-ui app is running!');
+        .toContain('sparrow-ui app is running!');
   });
 });

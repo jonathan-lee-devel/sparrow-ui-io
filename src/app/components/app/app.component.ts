@@ -9,5 +9,5 @@ import {Component} from '@angular/core';
  * Default AppComponent
  */
 export class AppComponent {
-  title = 'clipboard-ui';
+  title = 'sparrow-ui';
 }

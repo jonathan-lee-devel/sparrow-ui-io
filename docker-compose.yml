@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   client:
-    image: jonathanleedev/clipboard-ui:latest
+    image: jonathanleedev/sparrow-ui:latest
     ports:
       - '443:443'
       - '80:80'
