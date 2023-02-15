@@ -6,6 +6,7 @@ import {ModalService} from '../modal/modal.service';
 import {OrganizationService} from '../organization/organization.service';
 import {LoginDto} from '../../dtos/users/LoginDto';
 import {DEFAULT_ORGANIZATION} from '../../dtos/OrganizationDto';
+import {UserDto} from '../../dtos/users/UserDto';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,15 @@ import {DEFAULT_ORGANIZATION} from '../../dtos/OrganizationDto';
 export class AuthService {
   private static readonly USER_DATA_KEY: string = 'userInfo';
 
+  private static readonly DEFAULT_USER: UserDto = {
+    email: 'anonymous@mail.com',
+    firstName: 'Anonymous',
+    lastName: 'User',
+  };
+
   @Output() isLoggedIn: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  @Output() userInfo: EventEmitter<UserDto> = new EventEmitter<UserDto>();
 
   /**
    * Standard constructor
@@ -52,10 +61,31 @@ export class AuthService {
 
   /**
    * Allow for subscription to isLoggedIn event emitter.
-   * @return {Observable} observable for isLoggedIn event emitter
+   * @return {Observable<boolean>} observable for isLoggedIn event emitter
    */
   public getIsLoggedIn(): Observable<boolean> {
     return this.isLoggedIn;
+  }
+
+  /**
+   * Allow for subscription to userInfo event emitter.
+   * @return {Observable<UserDto>} observable for userInfo event emitter
+   */
+  public getUserInfo(): Observable<UserDto> {
+    return this.userInfo;
+  }
+
+  /**
+   * Method to obtain current user info.
+   * @return {UserDto} current user info
+   */
+  public currentUserInfo(): UserDto {
+    const userData = localStorage.getItem(AuthService.USER_DATA_KEY);
+    if (userData) {
+      return JSON.parse(userData).user;
+    } else {
+      return AuthService.DEFAULT_USER;
+    }
   }
 
   /**
@@ -63,7 +93,7 @@ export class AuthService {
    * @param {string} username to be authenticated
    * @param {string} password to be authenticated
    */
-  public validate(username: string, password: string) {
+  public validate(username: string, password: string): void {
     const body = {
       username,
       password,
@@ -73,7 +103,11 @@ export class AuthService {
         .post<LoginDto>(`/api/auth/login`, body)
         .subscribe((response) => {
           if (response.loginStatus == 'SUCCESS') {
+            this.setUserInfo(response);
             this.isLoggedIn.next(true);
+            if (response.user) {
+              this.userInfo.next(response.user);
+            }
             this.router.navigate(['/home']).then((_) => {
             });
           }
@@ -81,12 +115,35 @@ export class AuthService {
   }
 
   /**
+   * Sets user info to a JSON-stringified version of parameter passed.
+   * @param {LoginDto} userInfo user info to be set
+   */
+  setUserInfo(userInfo: LoginDto): void {
+    localStorage.setItem(AuthService.USER_DATA_KEY, JSON.stringify(userInfo));
+  }
+
+  /**
+   * Deletes user info from local storage.
+   */
+  deleteUserInfo(): void {
+    localStorage.removeItem(AuthService.USER_DATA_KEY);
+  }
+
+  /**
    * Used to log out and end user session.
    * @param {boolean} showMessage flag indicating whether success message should be shown
    */
-  logout(showMessage: boolean) {
+  logout(showMessage: boolean): void {
+    this.httpClient.post<LoginDto>('/api/auth/logout', {})
+        .subscribe((response) => {
+          if (response.loginStatus !== 'SUCCESS') {
+            console.log('Error during logout on the server-side');
+          }
+        });
+    this.deleteUserInfo();
     this.organizationService.deleteOrganizationInfo();
     this.isLoggedIn.next(false);
+    this.userInfo.next(AuthService.DEFAULT_USER);
     this.organizationService.setCurrentOrganization(DEFAULT_ORGANIZATION);
     this.router.navigate(['/login']).then((_) => {
     });

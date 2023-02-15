@@ -34,7 +34,7 @@ export class NotificationService {
    * @return {Observable<NotificationDto>} notifications for currently logged-in user
    */
   getNotifications(): Observable<NotificationDto[]> {
-    return this.httpClient.get<NotificationDto[]>('/api/notifications');
+    return this.httpClient.get<NotificationDto[]>('/api/notifications/unacknowledged');
   }
 
   /**

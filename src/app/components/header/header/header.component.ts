@@ -17,7 +17,6 @@ export class HeaderComponent implements OnInit {
   isMobile: boolean = false;
   isLoggedIn: boolean = false;
   loggedInUsername: string = 'John Doe';
-  availableOrganizations: OrganizationDto[] = [];
   currentOrganization: OrganizationDto = DEFAULT_ORGANIZATION;
   notifications: NotificationDto[] = [];
 
@@ -28,18 +27,18 @@ export class HeaderComponent implements OnInit {
    * @param {NotificationService} notificationService used to access notifications
    */
   constructor(private authService: AuthService,
-              private organizationService: OrganizationService,
-              private notificationService: NotificationService) {
+    private organizationService: OrganizationService,
+    private notificationService: NotificationService) {
     this.authService.getIsLoggedIn().subscribe((isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
+    });
+    this.authService.getUserInfo().subscribe((userInfo) => {
+      this.loggedInUsername = userInfo.email;
+      this.loggedInUsername = this.authService.currentUserInfo().email;
     });
     this.organizationService.getCurrentOrganization().subscribe((currentOrganization) => {
       this.currentOrganization = currentOrganization;
     });
-    this.organizationService.getOrganizationWhereInvolved()
-        .subscribe((organizations) => {
-          this.availableOrganizations = organizations;
-        });
   }
 
   /**
@@ -65,6 +64,7 @@ export class HeaderComponent implements OnInit {
     if (currentOrganization) {
       this.currentOrganization = currentOrganization;
     }
+    this.loggedInUsername = this.authService.currentUserInfo().email;
   }
 
   /**
