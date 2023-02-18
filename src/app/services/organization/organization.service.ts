@@ -2,6 +2,7 @@ import {EventEmitter, Injectable, Output} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {OrganizationDto} from '../../dtos/OrganizationDto';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -43,7 +44,7 @@ export class OrganizationService {
 
   getOrganizationWhereInvolved(): Observable<OrganizationDto[]> {
     return this.httpClient
-        .get<OrganizationDto[]>('/api/organizations/where-involved');
+        .get<OrganizationDto[]>(`${environment.MAIN_API_URL}/organizations/where-involved`);
   }
 
   createOrganization(organizationName: string) {
@@ -51,10 +52,10 @@ export class OrganizationService {
       name: organizationName,
     };
     return this.httpClient
-        .post<OrganizationDto>('/api/organizations', body);
+        .post<OrganizationDto>(`${environment.MAIN_API_URL}/organizations`, body);
   }
 
   getOrganizationById(organizationId: string): Observable<OrganizationDto> {
-    return this.httpClient.get<OrganizationDto>(`/api/organizations/${organizationId}`);
+    return this.httpClient.get<OrganizationDto>(`${environment.MAIN_API_URL}/organizations/${organizationId}`);
   }
 }

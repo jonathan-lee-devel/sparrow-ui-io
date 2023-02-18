@@ -47,7 +47,7 @@ export class DeliveryService {
    */
   markDeliveryAsDelivered(deliveryId: string): Observable<DeliveryDto> {
     return this.httpClient
-        .put<DeliveryDto>(`/api/deliveries/${deliveryId}/mark-delivered`, {});
+        .put<DeliveryDto>(`${environment.MAIN_API_URL}/deliveries/${deliveryId}/mark-delivered`, {});
   }
 
   /**
@@ -57,6 +57,6 @@ export class DeliveryService {
    */
   markDeliveryAsUndelivered(deliveryId: string): Observable<DeliveryDto> {
     return this.httpClient
-        .put<DeliveryDto>(`/api/deliveries/${deliveryId}/mark-undelivered`, {});
+        .put<DeliveryDto>(`${environment.MAIN_API_URL}/deliveries/${deliveryId}/mark-undelivered`, {});
   }
 }

@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {PasswordResetStatusDto} from '../../dtos/users/PasswordResetStatusDto';
 import {ModalService} from '../modal/modal.service';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,7 @@ export class PasswordService {
    * @param {ModalService} modalService used to display password reset status to the user
    */
   constructor(private httpClient: HttpClient,
-              private modalService: ModalService) {
+    private modalService: ModalService) {
   }
 
   /**
@@ -29,7 +30,7 @@ export class PasswordService {
     const body = {
       email,
     };
-    this.httpClient.post<PasswordResetStatusDto>('/api/password/reset', body)
+    this.httpClient.post<PasswordResetStatusDto>(`${environment.MAIN_API_URL}/password/reset`, body)
         .subscribe((response) => {
           if (response.status === 'AWAITING_EMAIL_VERIFICATION') {
             this.modalService.showModal('Password Reset Status', 'Awaiting e-mail verification, please check your inbox');

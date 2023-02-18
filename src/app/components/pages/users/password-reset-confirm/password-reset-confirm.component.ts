@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {PasswordResetStatusDto} from '../../../../dtos/users/PasswordResetStatusDto';
 import {ModalService} from '../../../../services/modal/modal.service';
+import {environment} from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-password-reset-confirm',
@@ -26,9 +27,9 @@ export class PasswordResetConfirmComponent implements OnInit {
    * @param {Router} router used to navigate accordingly
    */
   constructor(private route: ActivatedRoute,
-              private httpClient: HttpClient,
-              private modalService: ModalService,
-              private router: Router) {
+    private httpClient: HttpClient,
+    private modalService: ModalService,
+    private router: Router) {
   }
 
   /**
@@ -49,7 +50,7 @@ export class PasswordResetConfirmComponent implements OnInit {
       password: this.password,
       confirmPassword: this.confirmPassword,
     };
-    this.httpClient.post<PasswordResetStatusDto>('/api/password/reset/confirm', body)
+    this.httpClient.post<PasswordResetStatusDto>(`${environment.MAIN_API_URL}/password/reset/confirm`, body)
         .subscribe((response) => {
           if (response.status === 'SUCCESS') {
             this.modalService.showModal('Password Reset', 'Password reset successfully, you may now login');

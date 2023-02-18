@@ -2,6 +2,7 @@ import {EventEmitter, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {NotificationDto} from '../../dtos/notifications/NotificationDto';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -34,7 +35,7 @@ export class NotificationService {
    * @return {Observable<NotificationDto>} notifications for currently logged-in user
    */
   getNotifications(): Observable<NotificationDto[]> {
-    return this.httpClient.get<NotificationDto[]>('/api/notifications/unacknowledged');
+    return this.httpClient.get<NotificationDto[]>(`${environment.MAIN_API_URL}/notifications/unacknowledged`);
   }
 
   /**
@@ -42,7 +43,7 @@ export class NotificationService {
    * @return {Observable<NotificationDto>} all notifications for currently logged-in user
    */
   getAllNotifications(): Observable<NotificationDto[]> {
-    return this.httpClient.get<NotificationDto[]>('/api/notifications/all');
+    return this.httpClient.get<NotificationDto[]>(`${environment.MAIN_API_URL}/notifications/all`);
   }
 
   /**
@@ -51,6 +52,6 @@ export class NotificationService {
    * @return {Observable<NotificationDto>} response from notifications API
    */
   acknowledgeNotification(notification: NotificationDto): Observable<NotificationDto> {
-    return this.httpClient.put<NotificationDto>(`/api/notifications/acknowledge/${notification.id}`, {});
+    return this.httpClient.put<NotificationDto>(`${environment.MAIN_API_URL}/notifications/acknowledge/${notification.id}`, {});
   }
 }

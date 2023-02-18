@@ -7,6 +7,7 @@ import {OrganizationService} from '../organization/organization.service';
 import {LoginDto} from '../../dtos/users/LoginDto';
 import {DEFAULT_ORGANIZATION} from '../../dtos/OrganizationDto';
 import {UserDto} from '../../dtos/users/UserDto';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -100,7 +101,7 @@ export class AuthService {
     };
 
     this.httpClient
-        .post<LoginDto>(`/api/auth/login`, body)
+        .post<LoginDto>(`${environment.MAIN_API_URL}/auth/login`, body)
         .subscribe((response) => {
           if (response.loginStatus == 'SUCCESS') {
             this.setUserInfo(response);
@@ -134,7 +135,7 @@ export class AuthService {
    * @param {boolean} showMessage flag indicating whether success message should be shown
    */
   logout(showMessage: boolean): void {
-    this.httpClient.post<LoginDto>('/api/auth/logout', {})
+    this.httpClient.post<LoginDto>(`${environment.MAIN_API_URL}/auth/logout`, {})
         .subscribe((response) => {
           if (response.loginStatus !== 'SUCCESS') {
             console.log('Error during logout on the server-side');
