@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {RegistrationDto} from '../../dtos/users/RegistrationDto';
 import {RegistrationStatusDto} from '../../dtos/users/RegistrationStatusDto';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,7 @@ export class RegistrationService {
    * @return {Observable<RegistrationStatusDto>} observable from API request
    */
   register(registrationDto: RegistrationDto): Observable<RegistrationStatusDto> {
-    return this.httpClient.post<RegistrationStatusDto>('/api/register', registrationDto);
+    return this.httpClient.post<RegistrationStatusDto>(`${environment.MAIN_API_URL}/register`, registrationDto);
   }
 
   /**
@@ -34,7 +35,7 @@ export class RegistrationService {
    * @return {Observable<RegistrationStatusDto>} observable from API request
    */
   confirmRegistration(tokenValue: string): Observable<RegistrationStatusDto> {
-    return this.httpClient.post<RegistrationStatusDto>('/api/register/confirm', {
+    return this.httpClient.post<RegistrationStatusDto>(`${environment.MAIN_API_URL}/register/confirm`, {
       tokenValue,
     });
   }

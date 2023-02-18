@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {DeliveryDto} from '../../dtos/deliveries/DeliveryDto';
 import {Observable} from 'rxjs';
 import {DeliveryRequestDto} from '../../dtos/deliveries/DeliveryRequestDto';
+import {environment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +27,7 @@ export class DeliveryService {
    */
   public getDeliveries(): Observable<DeliveryDto[]> {
     return this.httpClient
-        .get<DeliveryDto[]>('/api/deliveries/assigned');
+        .get<DeliveryDto[]>(`${environment.MAIN_API_URL}/deliveries/assigned`);
   }
 
   /**
@@ -36,7 +37,7 @@ export class DeliveryService {
    */
   createDelivery(deliveryRequestDto: DeliveryRequestDto): Observable<DeliveryDto> {
     return this.httpClient
-        .post<DeliveryDto>('/api/deliveries', deliveryRequestDto);
+        .post<DeliveryDto>(`${environment.MAIN_API_URL}/deliveries`, deliveryRequestDto);
   }
 
   /**
