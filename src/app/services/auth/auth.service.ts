@@ -137,7 +137,7 @@ export class AuthService {
   logout(showMessage: boolean): void {
     this.httpClient.post<LoginDto>(`${environment.MAIN_API_URL}/auth/logout`, {})
         .subscribe((response) => {
-          if (response.loginStatus !== 'SUCCESS') {
+          if (response.logoutStatus !== 'SUCCESS') {
             console.log('Error during logout on the server-side');
           }
         });
