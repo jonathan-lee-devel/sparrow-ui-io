@@ -48,18 +48,8 @@ export class ErrorInterceptor implements HttpInterceptor {
    * @return {Observable} unused return value
    */
   private handleAuthError(error: HttpErrorResponse): Observable<any> {
-    const errors = error?.error?.errors;
-    const errorField = (errors && errors.length > 0) ? error.error.errors[0].field : '';
-    const errorMessage = (errors && errors.length > 0) ? error.error.errors[0].message : '';
     if (error.status === 400) {
-      if (errorField && errorMessage) {
-        this.modalService.showModal(
-            'Request Error',
-            `"${errorField}": ${errorMessage}`,
-        );
-      } else {
-        this.modalService.showModal('Request Error', error.error.status);
-      }
+      this.modalService.showModal('Request Error', error.error.errors[0].msg);
     }
 
     if (error.status === 401) {
