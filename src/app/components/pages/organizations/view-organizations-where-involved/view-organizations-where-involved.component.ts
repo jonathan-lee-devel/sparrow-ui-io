@@ -25,9 +25,9 @@ export class ViewOrganizationsWhereInvolvedComponent implements OnInit {
    * @param {Router} router used to navigate accordingly
    */
   constructor(private organizationService: OrganizationService,
-              private authService: AuthService,
-              private modalService: ModalService,
-              private router: Router) {
+    private authService: AuthService,
+    private modalService: ModalService,
+    private router: Router) {
   }
 
   /**
@@ -47,8 +47,7 @@ export class ViewOrganizationsWhereInvolvedComponent implements OnInit {
    * @return {boolean} indicating whether currently logged-in user is administrator
    */
   isAdmin(organization: OrganizationDto): boolean {
-    // TODO determine if user is admin
-    return false;
+    return organization.administratorEmails.includes(this.authService.currentUserInfo().email);
   }
 
   /**
