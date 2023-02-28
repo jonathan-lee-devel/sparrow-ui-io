@@ -14,10 +14,18 @@ import {DeliveryService} from '../../../../services/delivery/delivery.service';
 export class ViewDeliveriesComponent implements OnInit {
   deliveries: DeliveryDto[] = [];
 
+  /**
+   * Standard constructor.
+   * @param {DeliveryService} deliveryService used to mark deliveries as delivered/undelivered
+   * @param {ModalService} modalService used to display messages to the user
+   */
   constructor(private deliveryService: DeliveryService,
-              private modalService: ModalService) {
+    private modalService: ModalService) {
   }
 
+  /**
+   * Standard ngOnInit method.
+   */
   ngOnInit() {
     this.deliveryService.getDeliveries()
         .subscribe((deliveries) => {
@@ -25,13 +33,17 @@ export class ViewDeliveriesComponent implements OnInit {
         });
   }
 
+  /**
+   * Method to mark specified delivery as delivered or undelivered based on current state.
+   * @param {string} deliveryId ID of the delivery to be marked as delivered/undelivered
+   */
   markOrUnmarkDeliveryAsDelivered(deliveryId: string) {
     const deliveredSpan = document.getElementById(`span_${deliveryId}`);
     const markDeliveredButton = document.getElementById(`button_${deliveryId}`);
     if (deliveredSpan && markDeliveredButton) {
       if (deliveredSpan.style.visibility === 'hidden') {
         this.deliveryService.markDeliveryAsDelivered(deliveryId).subscribe((delivery) => {
-          if (delivery.delivered) {
+          if (delivery.isDelivered) {
             deliveredSpan.style.visibility = 'visible';
             markDeliveredButton.innerHTML = 'Unmark Delivered';
           } else {
@@ -40,7 +52,7 @@ export class ViewDeliveriesComponent implements OnInit {
         });
       } else {
         this.deliveryService.markDeliveryAsUndelivered(deliveryId).subscribe((delivery) => {
-          if (!delivery.delivered) {
+          if (!delivery.isDelivered) {
             deliveredSpan.style.visibility = 'hidden';
             markDeliveredButton.innerHTML = 'Mark Delivered';
           } else {

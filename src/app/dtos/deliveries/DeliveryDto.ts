@@ -3,5 +3,5 @@ export interface DeliveryDto {
   title: string;
   details: string;
   address: string;
-  delivered: boolean;
+  isDelivered: boolean;
 }
