@@ -1,6 +1,7 @@
 export interface DeliveryRequestDto {
+  organizationId: string;
   title: string;
   details: string;
   assignedDriverEmail: string;
-  delivered: boolean;
+  isDelivered: boolean;
 }

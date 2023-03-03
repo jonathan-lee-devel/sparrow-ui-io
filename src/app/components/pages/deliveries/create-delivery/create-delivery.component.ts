@@ -30,9 +30,9 @@ export class CreateDeliveryComponent implements OnInit {
    * @param {Router} router used to navigate accordingly
    */
   constructor(private organizationService: OrganizationService,
-              private deliveryService: DeliveryService,
-              private modalService: ModalService,
-              private router: Router) {
+    private deliveryService: DeliveryService,
+    private modalService: ModalService,
+    private router: Router) {
   }
 
   /**
@@ -42,7 +42,6 @@ export class CreateDeliveryComponent implements OnInit {
     this.organizationService.getCurrentOrganization()
         .subscribe((organization) => {
           this.organization = organization;
-          console.log(JSON.stringify(organization));
         });
     const organization = this.organizationService.currentOrganization();
     if (organization) {
@@ -55,10 +54,11 @@ export class CreateDeliveryComponent implements OnInit {
    */
   doCreateDelivery() {
     const deliveryRequestDto: DeliveryRequestDto = {
+      organizationId: this.organization.id,
       title: this.title,
       details: this.details,
       assignedDriverEmail: this.assignedDriverEmail,
-      delivered: this.isDelivered,
+      isDelivered: this.isDelivered,
     };
     this.deliveryService.createDelivery(deliveryRequestDto).subscribe((delivery) => {
       this.modalService.showModal('Delivery Creation', `Delivery with title ${delivery.title} successfully created`);
