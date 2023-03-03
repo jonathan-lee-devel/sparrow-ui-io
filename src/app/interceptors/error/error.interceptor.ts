@@ -49,7 +49,7 @@ export class ErrorInterceptor implements HttpInterceptor {
    */
   private handleAuthError(error: HttpErrorResponse): Observable<any> {
     if (error.status === 400) {
-      this.modalService.showModal('Request Error', error.error.errors[0].msg);
+      this.modalService.showModal('Request Error', `${error.error.errors[0].param}: ${error.error.errors[0].msg}`);
     }
 
     if (error.status === 401) {
