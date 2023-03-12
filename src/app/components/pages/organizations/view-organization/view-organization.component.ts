@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {DEFAULT_ORGANIZATION, OrganizationDto} from '../../../../dtos/OrganizationDto';
+import {DEFAULT_ORGANIZATION, OrganizationDto} from '../../../../dtos/organizations/OrganizationDto';
 import {OrganizationService} from '../../../../services/organization/organization.service';
 import {ActivatedRoute} from '@angular/router';
 
@@ -12,7 +12,7 @@ export class ViewOrganizationComponent implements OnInit {
   organization: OrganizationDto = DEFAULT_ORGANIZATION;
 
   constructor(private route: ActivatedRoute,
-              private organizationService: OrganizationService) {
+    private organizationService: OrganizationService) {
   }
 
   ngOnInit() {

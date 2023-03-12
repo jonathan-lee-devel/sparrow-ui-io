@@ -32,6 +32,12 @@ import {
 import {OrganizationsComponent} from './components/pages/organizations/organizations/organizations.component';
 import {CreateDeliveryComponent} from './components/pages/deliveries/create-delivery/create-delivery.component';
 import {ViewNotificationsComponent} from './components/pages/view-notifications/view-notifications.component';
+import {
+  InviteToOrganizationComponent,
+} from './components/pages/organizations/invite-to-organization/invite-to-organization.component';
+import {
+  ViewOrganizationInvitationComponent,
+} from './components/pages/organizations/view-organization-invitation/view-organization-invitation.component';
 
 export const appRoutes: Routes = [
   {path: '', component: LandingPageComponent},
@@ -46,6 +52,8 @@ export const appRoutes: Routes = [
   {path: 'organizations/view/:organizationId', component: ViewOrganizationComponent, canActivate: [AuthGuard]},
   {path: 'organizations/request-to-join', component: RequestToJoinOrganizationComponent, canActivate: [AuthGuard]},
   {path: 'organizations/create', component: CreateOrganizationComponent, canActivate: [AuthGuard]},
+  {path: 'organizations/:organizationId/invite', component: InviteToOrganizationComponent, canActivate: [AuthGuard]},
+  {path: 'organizations/invitations/:invitationTokenValue', component: ViewOrganizationInvitationComponent},
   {path: 'orders', component: ViewOrdersComponent, canActivate: [AuthGuard]},
   {path: 'suppliers', component: ViewSuppliersComponent, canActivate: [AuthGuard]},
   {path: 'deliveries', component: ViewDeliveriesComponent, canActivate: [AuthGuard, OrganizationGuard]},

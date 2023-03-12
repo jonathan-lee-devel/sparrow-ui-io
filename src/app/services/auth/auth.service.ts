@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 import {ModalService} from '../modal/modal.service';
 import {OrganizationService} from '../organization/organization.service';
 import {LoginDto} from '../../dtos/users/LoginDto';
-import {DEFAULT_ORGANIZATION} from '../../dtos/OrganizationDto';
+import {DEFAULT_ORGANIZATION} from '../../dtos/organizations/OrganizationDto';
 import {UserDto} from '../../dtos/users/UserDto';
 import {environment} from '../../../environments/environment';
 

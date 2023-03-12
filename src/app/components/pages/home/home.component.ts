@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {DEFAULT_ORGANIZATION, OrganizationDto} from '../../../dtos/OrganizationDto';
+import {DEFAULT_ORGANIZATION, OrganizationDto} from '../../../dtos/organizations/OrganizationDto';
 import {OrganizationService} from '../../../services/organization/organization.service';
 
 @Component({

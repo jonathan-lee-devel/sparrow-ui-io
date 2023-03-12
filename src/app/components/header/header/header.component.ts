@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../../services/auth/auth.service';
-import {DEFAULT_ORGANIZATION, OrganizationDto} from '../../../dtos/OrganizationDto';
 import {OrganizationService} from '../../../services/organization/organization.service';
 import {NotificationDto} from '../../../dtos/notifications/NotificationDto';
 import {NotificationService} from '../../../services/notification/notification.service';
+import {DEFAULT_ORGANIZATION, OrganizationDto} from '../../../dtos/organizations/OrganizationDto';
 
 @Component({
   selector: 'app-header',

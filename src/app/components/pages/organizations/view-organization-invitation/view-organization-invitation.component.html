@@ -1,0 +1,27 @@
+<!-- Page content-->
+<div class="container">
+    <div class="row">
+        <!-- Side widgets-->
+        <div class="col-lg-4">
+            <!-- Side widget-->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3>Organization Invitation</h3>
+                </div>
+                <div class="card-body">
+                    <h3>Organization Name:</h3>
+                    <p>{{organizationSnippet.name}}</p>
+                    <h3>Inviter E-mail Address:</h3>
+                    <p>{{organizationInvitation.requestingUserEmail}}</p>
+                    <h3>Your E-mail Address:</h3>
+                    <p>{{organizationInvitation.emailToInvite}}</p>
+                    <h3>Expiry Date:</h3>
+                    <p>{{organizationInvitation.expiryDate}}</p>
+                </div>
+                <div class="card-footer">
+                    <button (click)="acceptInvitation()" class="btn btn-primary">Accept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

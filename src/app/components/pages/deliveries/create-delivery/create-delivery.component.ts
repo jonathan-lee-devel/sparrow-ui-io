@@ -3,7 +3,7 @@ import {DeliveryService} from '../../../../services/delivery/delivery.service';
 import {ModalService} from '../../../../services/modal/modal.service';
 import {DeliveryRequestDto} from '../../../../dtos/deliveries/DeliveryRequestDto';
 import {Router} from '@angular/router';
-import {DEFAULT_ORGANIZATION, OrganizationDto} from '../../../../dtos/OrganizationDto';
+import {DEFAULT_ORGANIZATION, OrganizationDto} from '../../../../dtos/organizations/OrganizationDto';
 import {OrganizationService} from '../../../../services/organization/organization.service';
 
 @Component({

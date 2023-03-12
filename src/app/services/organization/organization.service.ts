@@ -1,8 +1,11 @@
 import {EventEmitter, Injectable, Output} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {OrganizationDto} from '../../dtos/OrganizationDto';
+import {OrganizationDto} from '../../dtos/organizations/OrganizationDto';
 import {environment} from '../../../environments/environment';
+import {OrganizationSnippetDto} from '../../dtos/organizations/OrganizationSnippetDto';
+import {OrganizationMembershipStatusDto} from '../../dtos/organizations/OrganizationMembershipStatusDto';
+import {OrganizationInvitationDto} from '../../dtos/organizations/OrganizationInvitationDto';
 
 @Injectable({
   providedIn: 'root',
@@ -57,5 +60,21 @@ export class OrganizationService {
 
   getOrganizationById(organizationId: string): Observable<OrganizationDto> {
     return this.httpClient.get<OrganizationDto>(`${environment.MAIN_API_URL}/organizations/${organizationId}`);
+  }
+
+  getOrganizationSnippetById(organizationId: string): Observable<OrganizationSnippetDto> {
+    return this.httpClient.get<OrganizationSnippetDto>(`${environment.MAIN_API_URL}/organizations/${organizationId}/snippet`);
+  }
+
+  inviteToOrganization(organizationId: string, emailToInvite: string): Observable<OrganizationMembershipStatusDto> {
+    return this.httpClient.post<OrganizationMembershipStatusDto>(`${environment.MAIN_API_URL}/organizations/invite-to-join/${organizationId}`, {emailToInvite});
+  }
+
+  getOrganizationInvitation(invitationTokenValue: string): Observable<OrganizationInvitationDto> {
+    return this.httpClient.get<OrganizationInvitationDto>(`${environment.MAIN_API_URL}/organizations/invitations/tokenValue/${invitationTokenValue}`);
+  }
+
+  acceptOrganizationInvitation(invitationTokenValue: string): Observable<OrganizationInvitationDto> {
+    return this.httpClient.put<OrganizationInvitationDto>(`${environment.MAIN_API_URL}/organizations/invitations/accept/tokenValue/${invitationTokenValue}`, {});
   }
 }

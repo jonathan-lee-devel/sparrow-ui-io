@@ -36,6 +36,8 @@ import { CreateOrganizationComponent } from './components/pages/organizations/cr
 import { OrganizationsComponent } from './components/pages/organizations/organizations/organizations.component';
 import { CreateDeliveryComponent } from './components/pages/deliveries/create-delivery/create-delivery.component';
 import { ViewNotificationsComponent } from './components/pages/view-notifications/view-notifications.component';
+import { InviteToOrganizationComponent } from './components/pages/organizations/invite-to-organization/invite-to-organization.component';
+import { ViewOrganizationInvitationComponent } from './components/pages/organizations/view-organization-invitation/view-organization-invitation.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +65,8 @@ import { ViewNotificationsComponent } from './components/pages/view-notification
     OrganizationsComponent,
     CreateDeliveryComponent,
     ViewNotificationsComponent,
+    InviteToOrganizationComponent,
+    ViewOrganizationInvitationComponent,
   ],
   imports: [
     BrowserModule,

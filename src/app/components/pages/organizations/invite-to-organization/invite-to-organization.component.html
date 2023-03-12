@@ -1,0 +1,39 @@
+<!-- Page content-->
+<div class="container">
+    <div class="row">
+        <!-- Side widgets-->
+        <div class="col-lg-4">
+            <!-- Side widget-->
+            <div class="card mb-4">
+                <div class="card-header"><b>{{organization.name}}</b></div>
+                <div class="card-body">
+                    <h3>Organization ID:</h3>
+                    <p>{{organization.id}}</p>
+                </div>
+            </div>
+            <div class="card mb-4">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="pt-4 pb-2">
+                            <h5 class="card-title text-center pb-0 fs-4">Invite to Organization</h5>
+                            <p class="text-center small">Enter the e-mail address of the user you'd like to invite</p>
+                        </div>
+                        <form (ngSubmit)="doInviteToOrganization()" class="row g-3 needs-validation" novalidate>
+                            <div class="col-12">
+                                <label class="form-label" for="email">E-mail Address</label>
+                                <div class="input-group has-validation">
+                                    <input [(ngModel)]="email" class="form-control" id="email" name="email"
+                                           placeholder="user@mail.com"
+                                           required type="email">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100" type="submit">Send Invite</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

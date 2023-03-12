@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {Observable} from 'rxjs';
-import {OrganizationDto} from '../../dtos/OrganizationDto';
+import {OrganizationDto} from '../../dtos/organizations/OrganizationDto';
 import {OrganizationService} from '../../services/organization/organization.service';
 import {ModalService} from '../../services/modal/modal.service';
 
@@ -28,8 +28,8 @@ export class OrganizationGuard implements CanActivate {
    * @param {Router} router used to navigate accordingly
    */
   constructor(private organizationService: OrganizationService,
-              private modalService: ModalService,
-              private router: Router) {
+    private modalService: ModalService,
+    private router: Router) {
     this.organizationService.getCurrentOrganization()
         .subscribe((organization) => {
           this.currentOrganization = organization;

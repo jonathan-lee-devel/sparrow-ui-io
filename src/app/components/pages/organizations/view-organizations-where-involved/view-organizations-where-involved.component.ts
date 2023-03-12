@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {OrganizationDto} from '../../../../dtos/OrganizationDto';
+import {OrganizationDto} from '../../../../dtos/organizations/OrganizationDto';
 import {OrganizationService} from '../../../../services/organization/organization.service';
 import {AuthService} from '../../../../services/auth/auth.service';
 import {ModalService} from '../../../../services/modal/modal.service';

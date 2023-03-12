@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {OrganizationService} from '../../services/organization/organization.service';
-import {OrganizationDto} from '../../dtos/OrganizationDto';
+import {OrganizationDto} from '../../dtos/organizations/OrganizationDto';
 
 @Injectable()
 /**

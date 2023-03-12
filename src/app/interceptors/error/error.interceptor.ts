@@ -49,7 +49,11 @@ export class ErrorInterceptor implements HttpInterceptor {
    */
   private handleAuthError(error: HttpErrorResponse): Observable<any> {
     if (error.status === 400) {
-      this.modalService.showModal('Request Error', `${error.error.errors[0].param}: ${error.error.errors[0].msg}`);
+      if (error.error.status) {
+        this.modalService.showModal('Request Error', `Status: ${error.error.status}`);
+      } else {
+        this.modalService.showModal('Request Error', `${error.error.errors[0].param}: ${error.error.errors[0].msg}`);
+      }
     }
 
     if (error.status === 401) {
@@ -62,21 +66,12 @@ export class ErrorInterceptor implements HttpInterceptor {
     }
 
     if (error.status === 403) {
-      if (this.isLoggedIn) {
-        this.modalService.showModal(
-            'Authorization Error',
-            'Access to that resource is denied',
-        );
-        this.router.navigate(['/error/forbidden']).then((_) => {
-        });
-      } else {
-        this.modalService.showModal(
-            'Authentication Error',
-            'Invalid username or password',
-        );
-        this.router.navigate(['/login']).then((_) => {
-        });
-      }
+      this.modalService.showModal(
+          'Authorization Error',
+          'Access to that resource is denied',
+      );
+      this.router.navigate(['/error/forbidden']).then((_) => {
+      });
     }
 
     if (error.status === 404) {
