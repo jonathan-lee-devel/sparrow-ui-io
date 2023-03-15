@@ -138,4 +138,13 @@ export class OrganizationService {
   acceptOrganizationInvitation(invitationTokenValue: string): Observable<OrganizationInvitationDto> {
     return this.httpClient.put<OrganizationInvitationDto>(`${environment.MAIN_API_URL}/organizations/invitations/accept/tokenValue/${invitationTokenValue}`, {});
   }
+
+  /**
+   * API call to allow for an admin of an organization to also join as a member.
+   * @param {string} organizationId ID of the organization to join as a member
+   * @return {Observable<OrganizationMembershipStatusDto>} observable of the organization membership status returned
+   */
+  joinOrganizationAsMember(organizationId: string): Observable<OrganizationMembershipStatusDto> {
+    return this.httpClient.put<OrganizationMembershipStatusDto>(`${environment.MAIN_API_URL}/organizations/update-admin-join-as-member/${organizationId}`, {});
+  }
 }

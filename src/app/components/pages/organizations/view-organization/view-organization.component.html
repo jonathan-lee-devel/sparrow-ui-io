@@ -20,6 +20,9 @@
             <div class="card mb-4">
                 <button class="btn btn-primary" routerLink="/organizations/{{organization.id}}/invite">Invite</button>
             </div>
+            <div *ngIf="currentUserIsAdminAndNotMember()" class="card mb-4">
+                <button (click)="joinOrganizationAsMember()" class="btn btn=primary">Join as Member</button>
+            </div>
         </div>
     </div>
 </div>
