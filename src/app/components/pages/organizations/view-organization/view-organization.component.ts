@@ -49,6 +49,7 @@ export class ViewOrganizationComponent implements OnInit {
         .subscribe((organizationMembershipStatus) => {
           if (organizationMembershipStatus.status === 'SUCCESS') {
             this.modalService.showModal('Organization Membership Status', 'Successfully joined organization as member');
+            this.ngOnInit();
           }
         });
   }
