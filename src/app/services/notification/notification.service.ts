@@ -54,4 +54,8 @@ export class NotificationService {
   acknowledgeNotification(notification: NotificationDto): Observable<NotificationDto> {
     return this.httpClient.put<NotificationDto>(`${environment.MAIN_API_URL}/notifications/acknowledge/${notification.id}`, {});
   }
+
+  getNotificationById(notificationId: string): Observable<NotificationDto> {
+    return this.httpClient.get<NotificationDto>(`${environment.MAIN_API_URL}/notifications/${notificationId}`);
+  }
 }

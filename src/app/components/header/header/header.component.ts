@@ -4,6 +4,7 @@ import {OrganizationService} from '../../../services/organization/organization.s
 import {NotificationDto} from '../../../dtos/notifications/NotificationDto';
 import {NotificationService} from '../../../services/notification/notification.service';
 import {DEFAULT_ORGANIZATION, OrganizationDto} from '../../../dtos/organizations/OrganizationDto';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -25,10 +26,13 @@ export class HeaderComponent implements OnInit {
    * @param {AuthService} authService used to authenticate
    * @param {OrganizationService} organizationService used to switch organizations
    * @param {NotificationService} notificationService used to access notifications
+   * @param {Router} router used to navigate accordingly
+   *
    */
   constructor(private authService: AuthService,
     private organizationService: OrganizationService,
-    private notificationService: NotificationService) {
+    private notificationService: NotificationService,
+    private router: Router) {
     this.authService.getIsLoggedIn().subscribe((isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
     });
@@ -72,5 +76,10 @@ export class HeaderComponent implements OnInit {
    */
   doLogout() {
     this.authService.logout(true);
+  }
+
+  redirectToNotificationDetails(notificationId: string) {
+    this.router.navigate([`/notifications/view/${notificationId}`]).then((_) => {
+    });
   }
 }

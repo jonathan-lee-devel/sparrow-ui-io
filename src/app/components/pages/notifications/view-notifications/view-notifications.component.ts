@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {NotificationDto} from '../../../dtos/notifications/NotificationDto';
-import {NotificationService} from '../../../services/notification/notification.service';
+import {NotificationDto} from '../../../../dtos/notifications/NotificationDto';
+import {NotificationService} from '../../../../services/notification/notification.service';
 
 @Component({
   selector: 'app-view-notifications',
@@ -39,8 +39,8 @@ export class ViewNotificationsComponent implements OnInit {
   acknowledgeNotification(notification: NotificationDto) {
     this.notificationService.acknowledgeNotification(notification)
         .subscribe((returnedNotification) => {
-          if (returnedNotification.acknowledged) {
-            notification.acknowledged = returnedNotification.acknowledged;
+          if (returnedNotification.isAcknowledged) {
+            notification.isAcknowledged = returnedNotification.isAcknowledged;
             this.notificationService.updateNotifications(this.notifications);
           }
         });

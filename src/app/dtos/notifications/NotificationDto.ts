@@ -4,5 +4,14 @@ export interface NotificationDto {
   content: string;
   timestamp: Date;
   type: string;
-  acknowledged: boolean;
+  isAcknowledged: boolean;
 }
+
+export const DEFAULT_NOTIFICATION: NotificationDto = {
+  id: '-1',
+  title: 'Loading...',
+  content: 'Loading...',
+  timestamp: new Date(),
+  type: 'INFO',
+  isAcknowledged: false,
+};

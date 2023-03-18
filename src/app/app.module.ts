@@ -31,13 +31,24 @@ import {OrganizationInterceptor} from './interceptors/organization/organization.
 import {
   ViewOrganizationsWhereInvolvedComponent,
 } from './components/pages/organizations/view-organizations-where-involved/view-organizations-where-involved.component';
-import { RequestToJoinOrganizationComponent } from './components/pages/organizations/request-to-join-organization/request-to-join-organization.component';
-import { CreateOrganizationComponent } from './components/pages/organizations/create-organization/create-organization.component';
-import { OrganizationsComponent } from './components/pages/organizations/organizations/organizations.component';
-import { CreateDeliveryComponent } from './components/pages/deliveries/create-delivery/create-delivery.component';
-import { ViewNotificationsComponent } from './components/pages/view-notifications/view-notifications.component';
-import { InviteToOrganizationComponent } from './components/pages/organizations/invite-to-organization/invite-to-organization.component';
-import { ViewOrganizationInvitationComponent } from './components/pages/organizations/view-organization-invitation/view-organization-invitation.component';
+import {
+  RequestToJoinOrganizationComponent,
+} from './components/pages/organizations/request-to-join-organization/request-to-join-organization.component';
+import {
+  CreateOrganizationComponent,
+} from './components/pages/organizations/create-organization/create-organization.component';
+import {OrganizationsComponent} from './components/pages/organizations/organizations/organizations.component';
+import {CreateDeliveryComponent} from './components/pages/deliveries/create-delivery/create-delivery.component';
+import {
+  InviteToOrganizationComponent,
+} from './components/pages/organizations/invite-to-organization/invite-to-organization.component';
+import {
+  ViewOrganizationInvitationComponent,
+} from './components/pages/organizations/view-organization-invitation/view-organization-invitation.component';
+import {
+  ViewNotificationsComponent,
+} from './components/pages/notifications/view-notifications/view-notifications.component';
+import { ViewNotificationComponent } from './components/pages/notifications/view-notification/view-notification.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +78,7 @@ import { ViewOrganizationInvitationComponent } from './components/pages/organiza
     ViewNotificationsComponent,
     InviteToOrganizationComponent,
     ViewOrganizationInvitationComponent,
+    ViewNotificationComponent,
   ],
   imports: [
     BrowserModule,

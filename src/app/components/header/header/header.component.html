@@ -1,172 +1,181 @@
 <!-- ======= Header ======= -->
 <header class="header fixed-top d-flex align-items-center" id="header">
 
-  <div class="d-flex align-items-center justify-content-between">
-    <a class="logo d-flex align-items-center" routerLink="/">
-      <img alt="" src="assets/img/logo.png">
-      <span class="d-none d-lg-block">Sparrow</span>
-    </a>
-    <a *ngIf="isLoggedIn" class="d-flex align-items-center" routerLink="/home">Home</a>
-    <a *ngIf="isLoggedIn" class="d-flex align-items-center" id="organizationNavLink" routerLink="/organizations">Organizations</a>
-  </div><!-- End Logo -->
+    <div class="d-flex align-items-center justify-content-between">
+        <a class="logo d-flex align-items-center" routerLink="/">
+            <img alt="" src="assets/img/logo.png">
+            <span class="d-none d-lg-block">Sparrow</span>
+        </a>
+        <a *ngIf="isLoggedIn" class="d-flex align-items-center" routerLink="/home">Home</a>
+        <a *ngIf="isLoggedIn" class="d-flex align-items-center" id="organizationNavLink" routerLink="/organizations">Organizations</a>
+    </div><!-- End Logo -->
 
-  <nav class="header-nav ms-auto">
-    <ul *ngIf="!isLoggedIn" class="d-flex align-items-center">
+    <nav class="header-nav ms-auto">
+        <ul *ngIf="!isLoggedIn" class="d-flex align-items-center">
 
-      <li class="nav-item dropdown">
+            <li class="nav-item dropdown">
 
-      <li class="nav-item dropdown pe-3">
+            <li class="nav-item dropdown pe-3">
 
-        <a class="nav-link nav-profile d-flex align-items-center pe-0" data-bs-toggle="dropdown" href="#">
-          <span class="d-none d-md-block dropdown-toggle ps-2">Anonymous</span>
-        </a><!-- End Profile Image Icon -->
+                <a class="nav-link nav-profile d-flex align-items-center pe-0" data-bs-toggle="dropdown" href="#">
+                    <span class="d-none d-md-block dropdown-toggle ps-2">Anonymous</span>
+                </a><!-- End Profile Image Icon -->
 
-        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-          <li class="dropdown-header">
-            <h6>Anonymous User</h6>
-          </li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                    <li class="dropdown-header">
+                        <h6>Anonymous User</h6>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
 
-          <li>
-            <a class="dropdown-item d-flex align-items-center" routerLink="/register">
-              <i class="bi bi-question-circle"></i>
-              <span>Sign up for an Account?</span>
-            </a>
-          </li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center" routerLink="/register">
+                            <i class="bi bi-question-circle"></i>
+                            <span>Sign up for an Account?</span>
+                        </a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
 
-          <li>
-            <a class="dropdown-item d-flex align-items-center" routerLink="/login">
-              <i class="bi bi-box-arrow-right"></i>
-              <span>Sign In</span>
-            </a>
-          </li>
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center" routerLink="/login">
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span>Sign In</span>
+                        </a>
+                    </li>
 
-        </ul><!-- End Profile Dropdown Items -->
-      </li><!-- End Profile Nav -->
+                </ul><!-- End Profile Dropdown Items -->
+            </li><!-- End Profile Nav -->
 
-    </ul>
-    <ul *ngIf="isLoggedIn" class="d-flex align-items-center">
+        </ul>
+        <ul *ngIf="isLoggedIn" class="d-flex align-items-center">
 
-      <li class="nav-item dropdown">
+            <li class="nav-item dropdown">
 
-        <a class="nav-link nav-icon" data-bs-toggle="dropdown" href="#">
-          <i (click)="this.ngOnInit()" class="bi bi-bell"></i>
-          <span *ngIf="notifications.length > 0" class="badge bg-primary badge-number">{{notifications.length}}</span>
-        </a><!-- End Notification Icon -->
+                <a class="nav-link nav-icon" data-bs-toggle="dropdown" href="#">
+                    <i (click)="this.ngOnInit()" class="bi bi-bell"></i>
+                    <span *ngIf="notifications.length > 0"
+                          class="badge bg-primary badge-number">{{notifications.length}}</span>
+                </a><!-- End Notification Icon -->
 
-        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-          <li class="dropdown-header">
-            You have {{notifications.length}} new notification{{(notifications.length == 1) ? '' : 's'}}
-            <a routerLink="/notifications"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-          </li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+                    <li class="dropdown-header">
+                        You have {{notifications.length}} new notification{{(notifications.length == 1) ? '' : 's'}}
+                        <a routerLink="/notifications"><span
+                                class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
 
-          <li *ngFor="let notification of notifications" class="notification-item">
-            <i *ngIf="notification.type === 'INFO'" class="bi bi-info-circle text-primary"></i>
-            <i *ngIf="notification.type === 'WARNING'" class="bi bi-exclamation-circle text-warning"></i>
-            <i *ngIf="notification.type === 'SUCCESS'" class="bi bi-check-circle text-success"></i>
-            <i *ngIf="notification.type === 'ERROR'" class="bi bi-x-circle text-danger"></i>
-            <div>
-              <h4>{{notification.title}}</h4>
-              <p>{{notification.content}}</p>
-              <p>{{notification.timestamp}}</p>
+                    <li *ngFor="let notification of notifications" class="notification-item">
+                        <i (click)="redirectToNotificationDetails(notification.id)" *ngIf="notification.type === 'INFO'"
+                           class="bi bi-info-circle text-primary"></i>
+                        <i (click)="redirectToNotificationDetails(notification.id)"
+                           *ngIf="notification.type === 'WARNING'"
+                           class="bi bi-exclamation-circle text-warning"></i>
+                        <i (click)="redirectToNotificationDetails(notification.id)"
+                           *ngIf="notification.type === 'SUCCESS'"
+                           class="bi bi-check-circle text-success"></i>
+                        <i (click)="redirectToNotificationDetails(notification.id)"
+                           *ngIf="notification.type === 'ERROR'"
+                           class="bi bi-x-circle text-danger"></i>
+                        <div (click)="redirectToNotificationDetails(notification.id)">
+                            <h4>{{notification.title}}</h4>
+                            <p>{{notification.content}}</p>
+                            <p>{{notification.timestamp}}</p>
+                        </div>
+                    </li>
+                </ul><!-- End Notification Dropdown Items -->
+
+            </li><!-- End Notification Nav -->
+            <li *ngIf="!isMobile" class="nav-item dropdown pe-3">
+
+                <a class="nav-link nav-profile d-flex align-items-center pe-0" data-bs-toggle="dropdown" href="#">
+                    <span class="d-none d-md-block dropdown-toggle ps-2">{{loggedInUsername}}</span>
+                </a><!-- End Profile Iamge Icon -->
+
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                    <li class="dropdown-header">
+                        <h6>{{loggedInUsername}}</h6>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center" href="#">
+                            <i class="bi bi-person"></i>
+                            <span>My Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center" href="#">
+                            <i class="bi bi-gear"></i>
+                            <span>Account Settings</span>
+                        </a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                        <button (click)="doLogout()" class="dropdown-item d-flex align-items-center">
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span>Sign Out</span>
+                        </button>
+                    </li>
+
+                </ul><!-- End Profile Dropdown Items -->
+            </li><!-- End Profile Nav -->
+            <div *ngIf="isMobile" class="dropdown d-md-none">
+                <li class="nav-item dropdown pe-3">
+                    <button class="dropdown-toggle d-flex align-items-center pe-0" data-bs-toggle="dropdown">
+                        <span class="d-none d-md-block dropdown-toggle ps-2">{{loggedInUsername}}</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header">
+                            <h6>{{loggedInUsername}}</h6>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <i class="bi bi-person"></i>
+                                <span>My Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <i class="bi bi-gear"></i>
+                                <span>Account Settings</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <button (click)="doLogout()" class="dropdown-item d-flex align-items-center">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Sign Out</span>
+                            </button>
+                        </li>
+                    </ul><!-- End Profile Dropdown Items -->
+                </li><!-- End Profile Nav -->
             </div>
-          </li>
-        </ul><!-- End Notification Dropdown Items -->
+            <!-- End Profile Nav -->
 
-      </li><!-- End Notification Nav -->
-      <li *ngIf="!isMobile" class="nav-item dropdown pe-3">
-
-        <a class="nav-link nav-profile d-flex align-items-center pe-0" data-bs-toggle="dropdown" href="#">
-          <span class="d-none d-md-block dropdown-toggle ps-2">{{loggedInUsername}}</span>
-        </a><!-- End Profile Iamge Icon -->
-
-        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-          <li class="dropdown-header">
-            <h6>{{loggedInUsername}}</h6>
-          </li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-
-          <li>
-            <a class="dropdown-item d-flex align-items-center" href="#">
-              <i class="bi bi-person"></i>
-              <span>My Profile</span>
-            </a>
-          </li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-
-          <li>
-            <a class="dropdown-item d-flex align-items-center" href="#">
-              <i class="bi bi-gear"></i>
-              <span>Account Settings</span>
-            </a>
-          </li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-
-          <li>
-            <button (click)="doLogout()" class="dropdown-item d-flex align-items-center">
-              <i class="bi bi-box-arrow-right"></i>
-              <span>Sign Out</span>
-            </button>
-          </li>
-
-        </ul><!-- End Profile Dropdown Items -->
-      </li><!-- End Profile Nav -->
-      <div *ngIf="isMobile" class="dropdown d-md-none">
-        <li class="nav-item dropdown pe-3">
-          <button class="dropdown-toggle d-flex align-items-center pe-0" data-bs-toggle="dropdown">
-            <span class="d-none d-md-block dropdown-toggle ps-2">{{loggedInUsername}}</span>
-          </button>
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li class="dropdown-header">
-              <h6>{{loggedInUsername}}</h6>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
-                <i class="bi bi-person"></i>
-                <span>My Profile</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
-                <i class="bi bi-gear"></i>
-                <span>Account Settings</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li>
-              <button (click)="doLogout()" class="dropdown-item d-flex align-items-center">
-                <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
-              </button>
-            </li>
-          </ul><!-- End Profile Dropdown Items -->
-        </li><!-- End Profile Nav -->
-      </div>
-      <!-- End Profile Nav -->
-
-    </ul>
-  </nav><!-- End Icons Navigation -->
+        </ul>
+    </nav><!-- End Icons Navigation -->
 
 </header><!-- End Header -->
